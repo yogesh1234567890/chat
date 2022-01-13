@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+		<meta charset="utf-8">
+		<title>Swipe – The Simplest Chat Platform</title>
+		<meta name="description" content="#">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Bootstrap core CSS -->
+		<link href="{% static 'dist/css/lib/bootstrap.min.css' %}" type="text/css" rel="stylesheet">
+		<!-- Swipe core CSS -->
+		<link href="{% static 'dist/css/swipe.min.css' %}" type="text/css" rel="stylesheet">
+		<!-- Favicon -->
+		<link href="{% static 'dist/img/favicon.png' %}" type="image/png" rel="icon">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<style>
+			.hide{
+  			display: none;
+			}
+			.is_active{
+  			display: block !important;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div class="layout">
+				<!-- Start of Navigation -->
+				{% include 'navigation.html' %}
+				<!-- End of Navigation -->
+				<!-- Start of Sidebar -->
+				{% include 'sidebar.html' %}
+				<!-- End of Sidebar -->
+				<!-- Start of Add Friends -->
+				<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered" role="document">
+						<div class="requests">
+							<div class="title">
+								<h1>Add your friends</h1>
+								<button type="button" class="btn" data-dismiss="modal" aria-label="Close"><i class="material-icons">close</i></button>
+							</div>
+							<div class="content">
+								<form>
+									<div class="form-group">
+										<label for="user">Username:</label>
+										<input type="text" class="form-control" id="user" placeholder="Add recipient..." required>
+										<div class="user" id="contact">
+											<img class="avatar-sm" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" alt="avatar">
+											<h5>Keith Morris</h5>
+											<button class="btn"><i class="material-icons">close</i></button>
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="welcome">Message:</label>
+										<textarea class="text-control" id="welcome" placeholder="Send your welcome message...">Hi Keith, I'd like to add you as a contact.</textarea>
+									</div>
+									<button type="submit" class="btn button w-100">Send Friend Request</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End of Add Friends -->
+				{% block content %}
+				
+				{% endblock content %}
+			</div> <!-- Layout -->
+		</main>
+		<!-- Bootstrap/Swipe core JavaScript
+		================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script src="{% static 'dist/js/jquery-3.3.1.slim.min.js' %}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="{% static 'dist/js/jquery.js' %}"></script>
+		<script>window.jQuery || document.write('<script src="{% static 'dist/js/vendor/jquery-slim.min.js' %}"></script>')</script>
+		<script src="{% static 'dist/js/vendor/popper.min.js' %}"></script>
+		<script src="{% static 'dist/js/swipe.min.js' %}"></script>
+		<script src="{% static 'dist/js/bootstrap.min.js' %}"></script>
+		<script>
+			function scrollToBottom(el) { 
+				
+				el.scrollTop = el.scrollHeight; 
+			
+				scrollToBottom(document.getElementById('content'))
+			}
+		</script>
+		{% block javascript %}
+		
+		{% endblock javascript %}
+	</body>
+
+</html>

@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="main">	
+    <div class="tab-content" id="nav-tabContent">
+        <!-- Start of Babble -->
+        <div class="babble tab-pane fade active show" id="list-chat" role="tabpanel" aria-labelledby="list-chat-list">
+            <!-- Start of Chat -->
+            {% for thread in Threads %}
+            <div class="chat messages-wrapper {% if forloop.first %}hide is_active{% else %}hide{% endif %}" chat-id="chat_{{ thread.id }}" other-user-id="
+            {% if thread.first_person == user %}
+                {{ thread.second_person.id }}
+            {% else %}
+                {{ thread.first_person.id }}
+            {% endif %}" id="chat1" >
+                <div class="top">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="inside">
+                                <a href="#"><img class="avatar-md" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" data-toggle="tooltip" data-placement="top" title="Keith' %}" alt="avatar"></a>
+                                <div class="status">
+                                    <i class="material-icons online">fiber_manual_record</i>
+                                </div>
+                                <div class="data">
+                                    {% if thread.first_person == user %}
+                                    <h5><a href="#">{{ thread.second_person.username }}</a></h5>
+                                    {% else %}
+                                    <h5><a href="#">{{ thread.first_person_person.username }}</a></h5>
+                                    {% endif %}
+                                    <span>Active now</span>
+                                </div>
+                                <button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button>
+                                <button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-36">videocam</i></button>
+                                <button class="btn d-md-block d-none"><i class="material-icons md-30">info</i></button>
+                                <div class="dropdown">
+                                    <button class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-30">more_vert</i></button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <button class="dropdown-item connect" name="1"><i class="material-icons">phone_in_talk</i>Voice Call</button>
+                                        <button class="dropdown-item connect" name="1"><i class="material-icons">videocam</i>Video Call</button>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="content" id="content">
+                    <div class="container" chat-id="chat_{{ thread.id }}" other-user-id="
+                    {% if thread.first_person == user %}
+                        {{ thread.second_person.id }}
+                    {% else %}
+                        {{ thread.first_person.id }}
+                    {% endif %}
+                    ">
+                        <div class="col-md-12 maa">	
+                            
+                            {% for chat in thread.chatmessage_thread.all %}
+                            {% if chat.user == user %}									
+                            <div class="message me">
+                                <img class="avatar-md" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" data-toggle="tooltip" data-placement="top" title="Keith'" alt="avatar">
+                                <div class="text-main">
+                                    <div class="text-group me">
+                                        <div class="text me">
+                                            <p>{{chat.message}}</p>
+                                        </div>
+                                    </div>
+                                    <span>{{chat.timestamp}}</span>
+                                </div>
+                            </div>
+                            {% else %}
+                            <div class="message">
+                                <div class="text-main">
+                                    <div class="text-group">
+                                        <div class="text">
+                                            <p>{{chat.message}}</p>
+                                        </div>
+                                    </div>
+                                    <span>{{chat.timestamp}}</span>
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="bottom">
+                        <form id="send-message-form" class="position-relative w-100">
+                            <textarea id="chat-message-input" class="form-control" placeholder="Start typing for reply..." rows="1"></textarea>
+                            <button type="submit" id="chat-message-submit" class="btn send"><i class="material-icons">send</i></button>
+
+                        </form>
+                         
+                    </div>
+                </div>
+            </div>
+            <!-- End of Chat -->
+            <!-- Start of Call -->
+            <div class="call" id="call1">
+                <div class="content">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="inside">
+                                <div class="panel">
+                                    <div class="participant">
+                                        <img class="avatar-xxl" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}' %}" alt="avatar">
+                                        <span>Connecting</span>
+                                    </div>							
+                                    <div class="options">
+                                        <button class="btn option"><i class="material-icons md-30">mic</i></button>
+                                        <button class="btn option"><i class="material-icons md-30">videocam</i></button>
+                                        <button class="btn option call-end"><i class="material-icons md-30">call_end</i></button>
+                                        <button class="btn option"><i class="material-icons md-30">person_add</i></button>
+                                        <button class="btn option"><i class="material-icons md-30">volume_up</i></button>
+                                    </div>
+                                    <button class="btn back" name="1"><i class="material-icons md-24">chat</i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Call -->
+        </div>
+        <!-- End of Babble -->
+
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript %}
+<script src="{% static 'dist/js/messages.js' %}"></script>
+
+{% endblock javascript %}

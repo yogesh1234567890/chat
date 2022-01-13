@@ -1,0 +1,31 @@
+{% load static %}
+<div id="discussions" class="tab-pane fade active show">
+    <div class="search">
+        <form class="form-inline position-relative">
+            <input type="search" class="form-control" id="conversations" placeholder="Search for conversations...">
+            <button type="button" class="btn btn-link loop"><i class="material-icons">search</i></button>
+        </form>
+    </div>					
+    <div class="discussions">
+        <h1>Discussions</h1>
+        {% for thread in Threads %}							
+        <div class="list-group " id="chats" role="tablist">	
+            <a href="#list-empty" class="filterDiscussions all unread single {% if forloop.first %}active{% endif %} contact-li" chat-id="chat_{{ thread.id }}" style="cursor: pointer" id="list-empty-list" data-toggle="list" role="tab">
+                <img class="avatar-md" src="{% static 'dist/img/avatars/avatar-male-1.jpg' %}" data-toggle="tooltip" data-placement="top" title="Michael" alt="avatar">
+                <div class="status">
+                    <i class="material-icons offline">fiber_manual_record</i>
+                </div>
+                <div class="data">
+                    {% if thread.first_person == user %}
+                    <h5>{{ thread.second_person.username }}</h5>
+                    {% else %}
+                    <h5>{{ thread.first_person.username }}</h5>
+                    {% endif %}
+                    <!-- <span>Sun</span>
+                    <p>How can i improve my chances of getting a deposit?</p> -->
+                </div>
+            </a>									
+        </div>
+        {% endfor %}
+    </div>
+</div>
