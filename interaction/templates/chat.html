@@ -29,17 +29,9 @@
                                     {% endif %}
                                     <span>Active now</span>
                                 </div>
-                                <button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button>
-                                <button class="btn connect d-md-block d-none" name="1"><i class="material-icons md-36">videocam</i></button>
+                                <button class="btn connect audio d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button>
+                                <button class="btn connect video d-md-block d-none" name="1"><i class="material-icons md-36">videocam</i></button>
                                 <button class="btn d-md-block d-none"><i class="material-icons md-30">info</i></button>
-                                <div class="dropdown">
-                                    <button class="btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="material-icons md-30">more_vert</i></button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <button class="dropdown-item connect" name="1"><i class="material-icons">phone_in_talk</i>Voice Call</button>
-                                        <button class="dropdown-item connect" name="1"><i class="material-icons">videocam</i>Video Call</button>
-                                        <hr>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,11 +75,11 @@
                             {% endfor %}
                         </div>
                     </div>
-                </div>
-                {% endfor %}
-                
+                </div>                
             </div>
-            <div class="container">
+            {% endfor %}
+
+            <div class="container textbox">
                 <div class="col-md-12">
                     <div class="bottom">
                         <form id="send-message-form" class="position-relative w-100">
@@ -107,18 +99,22 @@
                         <div class="col-md-12">
                             <div class="inside">
                                 <div class="panel">
+                                    <div id="video-call-div">
+                                        <!-- <video muted id="local-video" autoplay></video> -->
+                                        <!-- <video id="remote-video" autoplay playsinline></video> -->
+                                    </div>	
                                     <div class="participant">
                                         <img class="avatar-xxl" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" alt="avatar">
                                         <span>Connecting</span>
                                     </div>							
                                     <div class="options">
                                         <button class="btn option"><i class="material-icons md-30">mic</i></button>
-                                        <button class="btn option"><i class="material-icons md-30">videocam</i></button>
-                                        <button class="btn option call-end"><i class="material-icons md-30">call_end</i></button>
-                                        <button class="btn option"><i class="material-icons md-30">person_add</i></button>
+                                        <button class="btn option videocontrol"><i class="material-icons md-30">videocam</i></button>
+                                        <button class="btn option call-end back"><i class="material-icons md-30">call_end</i></button>
                                         <button class="btn option"><i class="material-icons md-30">volume_up</i></button>
+                                        <button class="btn back" name="1"><i class="material-icons md-24">chat</i></button>
+
                                     </div>
-                                    <button class="btn back" name="1"><i class="material-icons md-24">chat</i></button>
                                 </div>
                             </div>
                         </div>

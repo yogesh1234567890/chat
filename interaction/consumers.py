@@ -10,30 +10,39 @@ class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
+        self.user = self.scope['user']
         # Join room group
         await (self.channel_layer.group_add)(
             self.room_group_name,
             self.channel_name
         )
-        await self.accept()
-        await self.send(text_data=json.dumps({'status':'connected'}))
-        
+        if self.scope["user"].is_authenticated:
+            await self.accept()
+            await self.send(text_data=json.dumps({'status':'connected'}))
+        else:
+            await self.close(code=4001)
+
     async def disconnect(self, event):
-        # Leave room group
-        # async_to_sync(self.channel_layer.group_discard)(
-        #     self.room_group_name,
-        #     self.channel_name
-        # )
+        await self.channel_layer.group_discard(
+            self.room_group_name,
+            self.channel_name
+        )
         print('disconnect', event)
 
     # Receive message from WebSocket
     async def receive(self, text_data):
+        print(text_data)
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
 
         sent_by_id = text_data_json.get('sent_by')
         send_to_id = text_data_json.get('send_to')
         thread_id = text_data_json.get('thread_id')
+        is_video = text_data_json.get('is_video')
+        
+        if is_video:
+            print('Error:: video called')
+            return False
 
         if not message:
             print('Error:: empty message')
