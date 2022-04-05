@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="col-md-12">
                             <div class="inside">
-                                <a href="#"><img class="avatar-md" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" data-toggle="tooltip" data-placement="top" title="Keith' %}" alt="avatar"></a>
+                                <a href="#"><img class="avatar-md" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" data-toggle="tooltip" data-placement="top" alt="avatar"></a>
                                 <div class="status">
                                     <i class="material-icons online">fiber_manual_record</i>
                                 </div>
@@ -29,7 +29,7 @@
                                     {% endif %}
                                     <span>Active now</span>
                                 </div>
-                                <button onclick="call(video=false)" class="btn connect audio d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button>
+                                {% comment %} <button onclick="call(video=false)" class="btn connect audio d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button> {% endcomment %}
                                 <button onclick="call(video=true,to={{thread.second_person.id}},thread={{thread.id}})" class="btn connect video d-md-block d-none" name="1"><i class="material-icons md-36">videocam</i></button>
                                 <button id="answer_call" onclick="answer(video=true)">Answer Call</button>
                             </div>

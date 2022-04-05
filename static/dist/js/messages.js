@@ -12,9 +12,11 @@ var alreadyConnected = false;
 var our_video = document.getElementById("local-video");
 var remote_video = document.getElementById("remote-video");
 
+let ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";
 
 // let endpoint = wsStart + loc.host + loc.pathname
-let endpoint = "ws://localhost:8000/ws/chat/1/";
+let endpoint = ws_scheme + window.location.host + '/ws/chat/1/';
+// let endpoint = "ws://localhost:8000/ws/chat/1/";
 
 var socket = new WebSocket(endpoint);
 
