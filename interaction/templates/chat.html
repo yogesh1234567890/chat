@@ -5,6 +5,8 @@
     <div class="tab-content" id="nav-tabContent">
         <!-- Start of Babble -->
         <div class="babble tab-pane fade active show" id="list-chat" role="tabpanel" aria-labelledby="list-chat-list">
+        
+        <div class="main_chat hide is_active">
             <!-- Start of Chat -->
             {% for thread in Threads %}
             <div class="chat messages-wrapper {% if forloop.first %}hide is_active{% else %}hide{% endif %}" chat-id="chat_{{ thread.id }}" other-user-id="
@@ -17,7 +19,7 @@
                     <div class="container">
                         <div class="col-md-12">
                             <div class="inside">
-                                <a href="#"><img class="avatar-md" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" data-toggle="tooltip" data-placement="top" alt="avatar"></a>
+                                <a href="#"><img class="avatar-md" src="{% static 'dist/img/avatars/avatar-male-1.jpg' %}" data-toggle="tooltip" data-placement="top" alt="avatar"></a>
                                 <div class="status">
                                     <i class="material-icons online">fiber_manual_record</i>
                                 </div>
@@ -29,9 +31,7 @@
                                     {% endif %}
                                     <span>Active now</span>
                                 </div>
-                                {% comment %} <button onclick="call(video=false)" class="btn connect audio d-md-block d-none" name="1"><i class="material-icons md-30">phone_in_talk</i></button> {% endcomment %}
                                 <button onclick="call(video=true,to={{thread.second_person.id}},thread={{thread.id}})" class="btn connect video d-md-block d-none" name="1"><i class="material-icons md-36">videocam</i></button>
-                                <button id="answer_call" onclick="answer(video=true)">Answer Call</button>
                             </div>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                             {% for chat in thread.chatmessage_thread.all %}
                             {% if chat.user == user %}									
                             <div class="message me">
-                                <img class="avatar-md" src="{% static 'dist/img/avatars/avatar-female-5.jpg' %}" data-toggle="tooltip" data-placement="top" title="Keith'" alt="avatar">
+                                <img class="avatar-md" src="{% static 'dist/img/avatars/avatar-male-1.jpg' %}" data-toggle="tooltip" data-placement="top" title="Keith'" alt="avatar">
                                 <div class="text-main">
                                     <div class="text-group me">
                                         <div class="text me">
@@ -89,6 +89,8 @@
                     </div>
                 </div>
             </div>
+
+        </div>
             <!-- End of Chat -->
             <!-- Start of Call -->
             <div class="call" id="call1">
@@ -110,11 +112,9 @@
                                         <span>Connecting</span>
                                     </div>							
                                     <div class="options">
-                                        <button class="btn option"><i class="material-icons md-30">mic</i></button>
-                                        <button class="btn option videocontrol"><i class="material-icons md-30">videocam</i></button>
+                                        <button onclick="answer(video=true)" style="background-color:green" class="btn option call-end hide"><i class="material-icons md-30">call_end</i></button>
+
                                         <button class="btn option call-end back"><i class="material-icons md-30">call_end</i></button>
-                                        <button class="btn option"><i class="material-icons md-30">volume_up</i></button>
-                                        <button class="btn back" name="1"><i class="material-icons md-24">chat</i></button>
 
                                     </div>
                                 </div>

@@ -24,10 +24,6 @@ var peerConn
 var screenStream
 
 function newMessage(message, sent_by_id, thread_id) {
-  console.log("newMessage");
-  console.log(message);
-  console.log(sent_by_id);
-  console.log(thread_id);
   if ($.trim(message) === "") {
     return false;
   }
@@ -170,9 +166,7 @@ async function message_fun(e) {
       var calling = `${data.fromUser} is calling`;
       remoteRTCMessage = data.offer;
       isVideo = data.is_video;
-      console.log('answer isVideo', isVideo)
-      console.log("alreadyConnected", alreadyConnected);
-
+  
       if (alreadyConnected) {
         peerConn.setRemoteDescription(
           new RTCSessionDescription(remoteRTCMessage)
@@ -199,13 +193,12 @@ async function message_fun(e) {
         // //console.log("send answer");
       } else {
         //show answer button 
-      //   $(".messages-wrapper.hide.is_active").removeClass("is_active");
-      //   $("#chat" + $(this).attr("name")).hide();
-      // $("#call").css("display","block");
-      // $(".textbox").hide();
+        $(".main_chat.hide.is_active").removeClass("is_active");
+        $("#chat" + $(this).attr("name")).hide();
+        $("#call1").css("display","block");
+        $(".call-end.hide").addClass("is_active");
+        
 
-        document.getElementById("answer_call").innerHTML = calling;
-        document.getElementById("answer_call").style.display = "inline";
       }
     }
   } 
@@ -322,9 +315,7 @@ let iceServers = {
 };
 
 async function call(isVideo, to, thread) {
-  // message_fun();
   isVideo = isVideo;
-  //console.log("call isVideo", isVideo);
   document.getElementById("video-call-div").style.display = "inline"
   await get_media((is_video = isVideo));
   alreadyConnected = true;

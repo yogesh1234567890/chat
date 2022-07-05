@@ -152,4 +152,4 @@ import os
 
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
-CSRF_TRUSTED_ORIGINS = ['https://30c0-202-51-86-59.ngrok.io']
+CSRF_TRUSTED_ORIGINS = ['https://f8e7-27-34-22-33.ngrok.io']

@@ -1,14 +1,5 @@
 {% load static %}
 
-<!-- <div id="video-call-div">
-    <video muted id="local-video" autoplay></video>
-    <video id="remote-video" autoplay></video>
-    <div class="call-action-div">
-        <button id='mute_video' onclick="muteVideo()">Mute Video</button>
-        <button id='mute_audio' onclick="muteAudio()">Mute Audio</button>
-        <button onclick="stopCall(is_send=true)">Stop Call</button>
-    </div>
-</div> -->
 <div id="discussions" class="tab-pane fade active show">		
     <div class="discussions">
         <h1>Discussions</h1>
@@ -25,8 +16,6 @@
                     {% else %}
                     <h5>{{ thread.first_person.username }}</h5>
                     {% endif %}
-                    <!-- <span>Sun</span>
-                    <p>How can i improve my chances of getting a deposit?</p> -->
                 </div>
             </a>									
         </div>
