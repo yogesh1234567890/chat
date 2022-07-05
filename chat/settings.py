@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-l4i)bo0wtx%-(l5w4koks=hb4&jwk(-&q44o!^7b69e=r=4jiu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.10.70','*']
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authentication',
     'interaction',
+    'django_extensions'
 ]
 
 MIDDLEWARE = [
@@ -149,3 +151,5 @@ CHANNEL_LAYERS = {
 import os
 
 os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
+CSRF_TRUSTED_ORIGINS = ['https://f8e7-27-34-22-33.ngrok.io']

@@ -48,7 +48,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 print('Error:: empty message')
                 return False
 
-
             sent_by_user =await self.get_user_object(sent_by_id)
             send_to_user =await self.get_user_object(send_to_id)
             thread_obj =await self.get_thread(thread_id)
@@ -70,13 +69,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'thread_id': thread_id
             }
 
-            await self.channel_layer.group_send(
-                other_user_chat_room,
-                {
-                    'type': 'chat_message',
-                    'text': json.dumps(response)
-                }
-            )
+            # await self.channel_layer.group_send(
+            #     other_user_chat_room,
+            #     {
+            #         'type': 'chat_message',
+            #         'text': json.dumps(response)
+            #     }
+            # )
 
             await self.channel_layer.group_send(
                 self.room_group_name,
@@ -164,11 +163,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
 
     async def chat_message(self, event):
-        print('chat_message', event)
+        print('message', event)
         await self.send(json.dumps({
             'type': 'websocket.send',
             'text': event
         }))
+
+
 
     async def user_calling(self, event):
 

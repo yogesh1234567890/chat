@@ -5,9 +5,9 @@ from django.contrib import messages,auth
 from django.contrib.auth.forms import AuthenticationForm #add this
 
 # Create your views here.
-def index(request):
-	context={'user':request.user}
-	return render(request, 'base.html',context)
+# def index(request):
+# 	context={'user':request.user}
+# 	return render(request, 'chat.html',context)
 
 #create django login
 def login_request(request):
@@ -19,12 +19,10 @@ def login_request(request):
 			login(request, user)
 			messages.info(request, f"You are now logged in as {username}.")
 			print(f"You are now logged in as {username}.")
-			return redirect("authentication:index")
+			return redirect("interaction:index1")
 		else:
 			messages.error(request,"Invalid username or password.")
 			print("Invalid username or password.")
-		# else:
-		# 	messages.error(request,"Invalid username or password.")
 	return render(request=request, template_name="sign-in.html")
 
 

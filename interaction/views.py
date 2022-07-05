@@ -19,10 +19,10 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-@login_required
-def messages_page(request):
-    threads = Thread.objects.by_user(user=request.user).prefetch_related('chatmessage_thread').order_by('timestamp')
-    context = {
-        'Threads': threads
-    }
-    return render(request, 'discussions.html', context)
+# @login_required
+# def messages_page(request):
+#     threads = Thread.objects.by_user(user=request.user).prefetch_related('chatmessage_thread').order_by('timestamp')
+#     context = {
+#         'Threads': threads
+#     }
+#     return render(request, 'discussions.html', context)
